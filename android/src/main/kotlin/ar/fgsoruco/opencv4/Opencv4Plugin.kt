@@ -3,6 +3,7 @@ package ar.fgsoruco.opencv4
 import androidx.annotation.NonNull
 import ar.fgsoruco.opencv4.factory.colormaps.ApplyColorMapFactory
 import ar.fgsoruco.opencv4.factory.colorspace.CvtColorFactory
+import ar.fgsoruco.opencv4.factory.utils.DeShadowFactory
 import ar.fgsoruco.opencv4.factory.imagefilter.*
 import ar.fgsoruco.opencv4.factory.miscellaneous.AdaptiveThresholdFactory
 import ar.fgsoruco.opencv4.factory.miscellaneous.DistanceTransformFactory
@@ -50,6 +51,19 @@ class Opencv4Plugin: FlutterPlugin, MethodCallHandler {
         }
       }
 
+      //Core Function
+      "deshadow" -> {
+          try {
+              DeShadowFactory.process(
+                  call.argument<Int>("pathType") as Int,
+                  call.argument<String>("pathString") as String,
+                  call.argument<ByteArray>("data") as ByteArray,
+                  result
+              )
+          } catch (e: Exception) {
+              result.error("OpenCV-Error", "Android: "+e.message, e)
+          }
+      }
       //Module: Image Filtering
       "bilateralFilter" -> {
         try {

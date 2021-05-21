@@ -22,6 +22,8 @@ import 'package:opencv_4/factory/miscellaneoustransform/adaptivethreshold_factor
 import 'package:opencv_4/factory/miscellaneoustransform/distancetransform_factory.dart';
 import 'package:opencv_4/factory/miscellaneoustransform/threshold_factory.dart';
 import 'package:opencv_4/factory/pathfrom.dart';
+import 'package:opencv_4/factory/utils/deshadow_factory.dart';
+import 'package:opencv_4/factory/utils/deshadow_factory.dart';
 
 /// class that contains the implementation of OpenCV modules
 class Cv2 {
@@ -679,6 +681,21 @@ class Cv2 {
       pathFrom: pathFrom,
       pathString: pathString,
       colorMap: colorMap,
+    );
+
+    /// Function returns the response from method channel
+    return result;
+  }
+
+  /// [blur] function of Module: Image Filtering
+  static Future<Uint8List?> deshadow({
+    CVPathFrom pathFrom = CVPathFrom.ASSETS,
+    required String pathString,
+  }) async {
+    /// Variable to store operation result
+    final Uint8List? result = await DeShadowFactory.deshadow(
+      pathFrom: pathFrom,
+      pathString: pathString,
     );
 
     /// Function returns the response from method channel

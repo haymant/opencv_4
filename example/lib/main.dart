@@ -57,7 +57,14 @@ class _MyHomePageState extends State<MyHomePage> {
     required int thresholdType,
   }) async {
     try {
+
+      // test with removing shadow
+      _byte = await Cv2.deshadow(
+        pathFrom: pathFrom,
+        pathString: pathString,
+      );
       //test with threshold
+      /*
       _byte = await Cv2.threshold(
         pathFrom: pathFrom,
         pathString: pathString,
@@ -65,6 +72,7 @@ class _MyHomePageState extends State<MyHomePage> {
         thresholdType: thresholdType,
         thresholdValue: thresholdValue,
       );
+      */
 
       setState(() {
         _byte;
